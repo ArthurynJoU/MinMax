@@ -1,6 +1,6 @@
 # MinMax
 
-This is a **.NET** console application that processes log files to determine the minimum, maximum, and average durations of various events. The application reads a log file, extracts timing information for each event, and outputs a console report summarizing these statistics.
+This is a **.NET Framework 4.8.1** console application that processes log files to determine the minimum, maximum, and average durations of various events. The application reads a log file, extracts timing information for each event, and outputs a console report summarizing these statistics.
 
 ---
 
@@ -55,38 +55,46 @@ MinMax
 
 ## How to Build and Run
 
-1. **Open the solution** in Visual Studio or any IDE that supports .NET (e.g., Rider, VS with .NET CLI).  
-2. **Ensure** you have a .NET environment installed (e.g., .NET Framework 4.8.1 or compatible).  
-3. **Build the solution**:  
-   - Using Visual Studio: **Build** > **Build Solution**.  
-   - Using the .NET CLI:  
+### Prerequisites
+- Ensure **.NET Framework 4.8.1 Developer Pack** is installed on your machine.
+- Use Visual Studio or a compatible IDE to work with .NET Framework projects.
+
+### Building the Application
+1. Open the solution in Visual Studio.
+2. Build the solution:
+   - **In Visual Studio**: Go to **Build** > **Build Solution**.
+   - **Using MSBuild**: Open a terminal and run:
      ```bash
-     dotnet build MinMax.csproj
+     msbuild MinMax.csproj
      ```
 
-4. **Run the application**:  
-   - Using Visual Studio: Set `MinMax` as the startup project and press **Start**.  
-   - Using the .NET CLI:  
-     ```bash
-     dotnet run --project MinMax.csproj <path_to_log_file>
-     ```
-     Replace `<path_to_log_file>` with the actual path to your log file.
+### Running the Application
+Since this is a .NET Framework project, it generates an `.exe` file. Run the `.exe` file directly.
+
+1. Locate the compiled executable:
+   ```
+   bin\Debug\MinMax.exe
+   ```
+2. Run the application from the terminal or command prompt:
+   ```bash
+   MinMax.exe <path_to_log_file>
+   ```
+   Replace `<path_to_log_file>` with the full path to your log file.
 
 ---
 
 ## Running Unit Tests
 
-Unit tests are implemented in `UnitTests.cs` and can be run as part of the main program. When the application starts, tests are executed first, followed by the main logic.
+Unit tests are implemented in `UnitTests.cs` and run automatically when the application starts.
 
-### To execute the application with tests:
-1. Simply run the application:
+1. Simply run the compiled `.exe`:
    ```bash
-   dotnet run --project MinMax.csproj
+   MinMax.exe
    ```
-2. The console will display the results of the tests, indicating whether they passed or failed, followed by the application's main output.
+2. The tests will execute first, followed by the main program logic. Test results will be displayed in the console output.
 
-### Example:
-```plaintext
+Example test output:
+```
 Starting Unit Tests...
 
 Running TestEventParser...
@@ -144,7 +152,6 @@ Passed: 20, Failed: 0
 ## Example
 
 Given a log file with the following lines:
-
 ```
 [Performance] EventA with Tid 1 has been processed in 100 ms
 [Performance] EventB with Tid 2 has been processed in 200 ms
@@ -152,11 +159,10 @@ Given a log file with the following lines:
 ```
 
 The console output will show:
-
 ```
 Event                                           Min        Max    Average           Count
 EventA                                          100        150    125               2
 EventB                                          200        200    200               1
 ```
 
---- 
+---
